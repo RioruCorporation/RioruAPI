@@ -9,7 +9,7 @@ app.use(`${b}/:locale`, (req, res) => {
     if(!q) return res.send({ code: 401 })
     q = q.split(":")
     
-    if(q.length === 0) return res.send({ message: "That translate uri is invalid" })
+    if(q.length === 1) return res.send({ response: q.join(" "), message: "this uri translation is incorrect but here's your text back" })
     
     if(!readdirSync("./src/translate/RioruLocales").includes(locale)) return res.send({ message: `The locale "${locale}" is not avaliable or not exists` })
 
@@ -20,9 +20,8 @@ app.use(`${b}/:locale`, (req, res) => {
     
     const ev = eval(`f${finalVal}`)
 
-    if(!ev) {
-        res.send({ response: "null" })
-    } else {
+    if(!ev) 
+        res.send({ response: q.join(" ") })
+    else 
         res.send({ response: ev })
-    }
 })

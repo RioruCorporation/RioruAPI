@@ -15,7 +15,10 @@ module.exports = class MongoDBInstance {
         return {
             ...this,
             models: {
-                user: require("./models/UserModel")
+                user: require("./models/UserModel"),
+                guild: require('./models/GuildModel'),
+                payment: require('./models/PaymentModel'),
+                oauth: require('./models/OAuth2Model')
             }
         }
     }
